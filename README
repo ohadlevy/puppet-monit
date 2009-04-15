@@ -1,0 +1,38 @@
+# Copyright (c) 2009, Ohad Levy, ohadlevy@gmail.com
+# 
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Taken from http://mmonit.com/monit:
+monit is a utility for managing and monitoring, processes, files, directories
+and devices on a UNIX system. Monit conducts automatic maintenance and repair
+and can execute meaningful causal actions in error situations.
+
+in order to use this module you would need to include in your manifest somewhere:
+class mymodule::myclass {
+    include monit::common
+}
+if you would like to receive email notifications from monit for failed services/alerts please enter
+BEFORE the include line the following line:
+
+    # email address to send monit emails
+	$monit_admin="my@email"
+    include monit::common
+
+Note: you probably need to change the monit template to include your smtp server
+
+munin integration
+
+If you already use munin,or you would like to use it, you could choose add the monit information to your munin graphs.
+in order to that, just include monit::munin instead of monit::common 
+
+additional monit files can be deployed in /etc/monit.d/
